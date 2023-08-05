@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", function () {
     return view('index');
 });
+
+
+Route::get('/login', [UserController::class, 'loginPage']);
+Route::post("/login", [UserController::class, 'loginUser']);
+Route::post("/register", [UserController::class, 'registerUser']);
+Route::get('/register', [UserController::class, 'registerPage']);
