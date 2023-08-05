@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-
     public function getProducts(Request $request)
     {
         if ($request->get('search')) {
@@ -17,10 +16,13 @@ class ProductController extends Controller
         } else {
             $products = Product::all();
         }
-        dd($products);
+        return view('index', compact($products));
     }
 
-
+    public function getProduct(int $id)
+    {
+        return Product::find($id);
+    }
 
     public function createProduct()
     {
