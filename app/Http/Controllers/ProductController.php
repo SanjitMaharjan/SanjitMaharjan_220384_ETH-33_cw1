@@ -24,6 +24,11 @@ class ProductController extends Controller
         return Product::find($id);
     }
 
+    public function addPage()
+    {
+        return view('admin_add');
+    }
+
     public function createProduct()
     {
         if (Auth::user()->username !== 'admin') {
@@ -38,8 +43,13 @@ class ProductController extends Controller
         }
     }
 
+    public function edit(int $id)
+    {
+        $product = Product::findOrFail($id);
+        return view('edit_product_page', compact($product));
+    }
 
-    public function edit(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $product = Product::find($id);
         if ($product) {
