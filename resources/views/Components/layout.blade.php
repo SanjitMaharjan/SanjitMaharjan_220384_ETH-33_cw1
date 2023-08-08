@@ -33,7 +33,7 @@
             <div class="dropdown-menu bg-dark">
               <!--Drop Down Menu here-->
               @foreach($categories as $category)
-              <a href="categories/{{$category->title}}" class="dropdown-item " style="color: bisque;">{{$category->title}}</a>
+              <a href="/categories/{{$category->title}}" name="search" class="dropdown-item " style="color: bisque;">{{$category->title}}</a>
               @endforeach
               <!--Yeta samma -->
             </div>
@@ -64,6 +64,24 @@
       </div>
     </nav>
   </header>
+
+  <section>
+    @if($message = Session::get('success'))
+    <div class="alert alert-success">
+      {{ $message }}
+    </div>
+    @elseif($message = Session::get('info'))
+    <div class="alert alert-info">
+      {{ $message }}
+    </div>
+    @elseif($message = Session::get('danger'))
+    <div class="alert alert-danger">
+      {{ $message }}
+    </div>
+    @endif
+    @yield('content')
+  </section>
+
 
   @yield('content')
   <!-- Optional JavaScript -->

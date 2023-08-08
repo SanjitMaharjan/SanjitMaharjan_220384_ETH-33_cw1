@@ -86,4 +86,11 @@ class ProductController extends Controller
         session()->flash('info', "Product updated successfully");
         return view("admin_product");
     }
+
+    public function productDetails($id)
+    {
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        return view('productDetails',compact('product','categories'));
+    }
 }
