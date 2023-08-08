@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,11 +34,18 @@ class ProductController extends Controller
 
     public function getProducts(Request $request)
     {
+        $productFromQuery = [];
         if (request('search')) {
             $keyword = request('search');
-            $products = Product::where('name', 'like', $keyword . '%')->get();
+            $productFromQuery = Product::where('name', 'like', $keyword . '%')->get();
         } else {
-            $products = Product::all();
+            $productFromQuery = Product::all();
+        }
+        $products = [];
+        foreach ($productFromQuery as $product) {
+            $product->cartAdded = (bool)Cart::where("product_id", $product->id)->where("user_id", 1)->count();
+            $product->addedOnWishlist = (bool)Wishlist::where("product_id", $product->id)->where("user_id", 1)->count();
+            array_push($products, $product);
         }
         $categories = Category::all();
 
@@ -91,6 +99,6 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $categories = Category::all();
-        return view('productDetails',compact('product','categories'));
+        return view('productDetails', compact('product', 'categories'));
     }
 }
