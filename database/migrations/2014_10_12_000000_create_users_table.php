@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone_number');
-            $table->string('is_admin');
+            $table->boolean('is_admin');
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();

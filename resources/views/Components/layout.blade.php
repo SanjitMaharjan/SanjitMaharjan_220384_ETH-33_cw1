@@ -44,6 +44,14 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Help</a>
           </li>
+          @if(auth()->check() && auth()->user()->is_admin === TRUE)
+          {
+            <li class="nav-item">
+            <a class="nav-link" href="/admin/dashboard">Admin pannel</a>
+          </li>
+          }
+          @endif
+          
         </ul>
 
         <form class="form-inline mt-2 mt-md-0" action="/" method="GET">
