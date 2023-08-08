@@ -44,6 +44,14 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Help</a>
           </li>
+          @if(auth()->check() && auth()->user())
+          {
+            <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+          }
+          @endif
+          
           @if(auth()->check() && auth()->user()->is_admin === TRUE)
           {
             <li class="nav-item">

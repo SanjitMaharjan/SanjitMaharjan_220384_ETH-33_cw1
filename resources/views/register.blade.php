@@ -1,71 +1,76 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <section class="vh-100" style="background-color: #ffffff;">
-          <div class="d-flex h-100 w-100">
-            
-                <div class="card-body p-md-5 w-50" style="background-color: black;">
-                  <div class="justify-content-center">
-      
-                      <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-      
-                      <form class="">
-      
-                        <div class="d-flex flex-row align-items-center mb-4">
-                          <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                          <div class="form-outline flex-fill mb-0">
-                            <input type="text" id="form3Example1c" class="form-control" />
-                            <label class="form-label" for="form3Example1c">Your Name</label>
-                          </div>
-                        </div>
-      
-                        <div class="d-flex flex-row align-items-center mb-4">
-                          <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                          <div class="form-outline flex-fill mb-0">
-                            <input type="email" id="form3Example3c" class="form-control" />
-                            <label class="form-label" for="form3Example3c">Your Email</label>
-                          </div>
-                        </div>
-      
-                        <div class="d-flex flex-row align-items-center mb-4">
-                          <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                          <div class="form-outline flex-fill mb-0">
-                            <input type="password" id="form3Example4c" class="form-control" />
-                            <label class="form-label" for="form3Example4c">Password</label>
-                          </div>
-                        </div>
-      
-                        <div class="d-flex flex-row align-items-center mb-4">
-                          <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                          <div class="form-outline flex-fill mb-0">
-                            <input type="password" id="form3Example4cd" class="form-control" />
-                            <label class="form-label" for="form3Example4cd">Re-enter password</label>
-                          </div>
-                        </div>
-      
-                        <div class="form-check d-flex justify-content-center mb-5">
-                          <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-                          <label class="form-check-label" for="form2Example3">
-                            I agree all statements in <a href="#!">Terms of service</a>
-                          </label>
-                        </div>
-      
-                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          <button type="button" class="btn btn-primary btn-lg">Register</button>
-                        </div>
-      
-                    </form>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <form id="registerForm" method="POST" action="/register">
+                @csrf
+                <div class="mb-md-5 mt-md-4 pb-5">
+                  <h2 class="fw-bold mb-2 text-uppercase">Signup</h2>
+                  <p class="text-white-50 mb-5">Sign Up for creating account</p>
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="typeUsername">Full Name</label>
+                    <input type="text" id="typeUsername" class="form-control form-control-lg" name="name" value="{{ old('name') }}" />
+                    @error('name')
+                    <span class="text-danger" style="font-size: 16px;">{{ $message }}</span>
+                    @enderror
                   </div>
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="typeUsername">Email</label>
+                    <input type="email" name="email" id="typeUsername" class="form-control form-control-lg" value="{{ old('email') }}" />
+                    @error('email')
+                    <span class="text-danger" style="font-size: 16px;">{{ $message }}</span>
+                    @enderror
+                  </div>
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="typeUsername">Phone Number</label>
+                    <input name="phone_number" type="number" id="typeUsername" class="form-control form-control-lg" value="{{ old('phone_number') }}" />
+                    @error('phone_number')
+                    <span class="text-danger" style="font-size: 16px;">{{ $message }}</span>
+                    @enderror
+                  </div>
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="typePasswordX">Password</label>
+                    <input name="password" type="password" id="typePasswordX" class="form-control form-control-lg" value="{{ old('password') }}" />
+                    @error('password')
+                    <span class="text-danger" style="font-size: 16px;">{{ $message }}</span>
+                    @enderror
+                  </div>
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="typePasswordX">Confirm Password</label>
+                    <input name="password_confirmation" type="password" id="typePasswordX" class="form-control form-control-lg" value="{{ old('password_confirmation') }}" />
+                    @error('password_confirmation')
+                    <span class="text-danger" style="font-size: 16px;">{{ $message }}</span>
+                    @enderror
+                  </div>
+                  <button class="btn btn-outline-light btn-lg px-5" type="submit">Signup</button>
+                </div>
+              </form>
+
+              <div>
+                <p class="mb-0">Already have account ?? <a href="/login" class="text-white-50 fw-bold">Login</a>
+                </p>
+              </div>
             </div>
+          </div>
         </div>
-      </section>
-  </body>
+      </div>
+    </div>
+
+  </section>
+</body>
+
 </html>

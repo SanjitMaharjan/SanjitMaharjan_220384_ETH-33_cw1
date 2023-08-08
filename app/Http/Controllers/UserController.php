@@ -24,12 +24,14 @@ class UserController extends Controller
     {
         $attributes = request()->validate([
             'name' => "required|max:255",
-            'username' => 'required|max:255|min:3|unique:users,username',
+            'phone_number' => "required|min:10|max:10",
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')],
             'password' => 'required|min:7|max:255',
+            'password_confirmation' => 'required|same:password',
 
         ]);
         $attributes['password'] = bcrypt($attributes['password']);
+        $attributes['is_admin'] = false;
         $user = User::create($attributes);
         auth()->login($user);
         session()->flash('success', 'Your accounted has been created');
@@ -40,13 +42,12 @@ class UserController extends Controller
     public function loginUser()
     {
         $attributes = request()->validate([
-            'email' => 'required|email',
+            'phone_number' => 'required',
             'password' => 'required'
-
         ]);
         if (!auth()->attempt($attributes)) {
             throw ValidationException::withMessages([
-                'email' => 'Your provided credentials could not be verifies.'
+                'phone_number' => 'Your provided credentials could not be verified.'
             ]);
         }
         session()->regenerate();

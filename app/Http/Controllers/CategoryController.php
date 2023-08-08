@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -48,8 +49,8 @@ class CategoryController extends Controller
 
         $products = [];
         foreach ($category->products as $product) {
-            $product->cartAdded = (bool)Cart::where("product_id", $product->id)->where("user_id", 1)->count();
-            $product->addedOnWishlist = (bool)Wishlist::where("product_id", $product->id)->where("user_id", 1)->count();
+            $product->cartAdded = (bool)Cart::where("product_id", $product->id)->where("user_id", Auth::user()->id)->count();
+            $product->addedOnWishlist = (bool)Wishlist::where("product_id", $product->id)->where("user_id", Auth::user()->id)->count();
             array_push($products, $product);
         }
         $categories = Category::all();
