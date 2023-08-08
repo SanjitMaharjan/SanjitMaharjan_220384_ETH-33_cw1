@@ -52,14 +52,15 @@ class CartController extends Controller
     {
         $product = Product::findOrFail($product_id);
         $cart = new Cart;
-        $cart->user_id = Auth::user()->id;
+        $cart->user_id = 1;
         $cart->product_id = $product->id;
         $cart->save();
     }
 
     public function removeFromCart(int $product_id)
     {
-        $product = Product::findOrFail($product_id);
+        $product = Cart::where('product_id', $product_id)->first();
+        dd($product);
         $product->delete();
     }
 
