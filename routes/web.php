@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", function () {
-    return view('index');
-});
 
 
 Route::get('/login', [UserController::class, 'loginPage']);
@@ -33,4 +32,11 @@ Route::get("/ordered", [CartController::class, 'getOrderedItems']); // auth, adm
 Route::post("/cart/add/{product_id}", [CartController::class, 'addToCart']); // auth
 Route::post("/cart/remove/{product_id}", [CartController::class, 'removeFromCart']); // auth
 Route::post("/cart/order/{cart_id}", [CartController::class, 'orderItems']); // auth
-Route::post("/cart/deliver/{cart_id}", [CartController::class, 'deliverItems']); // auth, admin
+Route::post("/cart/deliver/{cart_id}", [CartController::class, 'deliverItems']); // auth, admin'
+
+//product 
+Route::get('/',[ProductController::class,'getProducts']);
+
+//Categories
+Route::get('/categories/{category:title}',[CategoryController::class,'getProductsByCategory']);
+

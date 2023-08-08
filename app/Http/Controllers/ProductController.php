@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,13 +11,20 @@ class ProductController extends Controller
 {
     public function getProducts(Request $request)
     {
-        if ($request->get('search')) {
-            $keyword = $request->get('search');
+        if (request('search')) {
+            $keyword = request('search');
             $products = Product::where('name', 'like', $keyword . '%')->get();
+           
+
         } else {
             $products = Product::all();
+
         }
-        return view('index', compact($products));
+        $categories = Category::all();
+
+
+        return view('product', compact('products','categories'));
+
     }
 
     public function getProduct(int $id)
@@ -57,4 +65,5 @@ class ProductController extends Controller
         $product = product::find($id);
         $product->delete();
     }
+
 }
