@@ -16,25 +16,16 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check())
-        {
-            if(Auth::user()->is_admin == 1)
-            {
+        if (Auth::check()) {
+            if (Auth::user()->is_admin) {
                 return $next($request);
+            } else {
+                return redirect(route('/'))->with('danger', 'You are not authorized to this page');
             }
-            else{
-                return redirect(route('/'))->with('danger','You are not authorized to this page');
-            }
-
-        }
-        else
-        {
-            return redirect(route('login'))->with('danger','login to access this website');
-
+        } else {
+            return redirect(route('login'))->with('danger', 'login to access this website');
         }
 
         return $next($request);
-
     }
-
 }

@@ -47,7 +47,7 @@ class CartController extends Controller
 
     public function getCartItems()
     {
-        $cartItems = Cart::where('user_id', 1)->get();
+        $cartItems = Cart::where('user_id', Auth::user()->id)->get();
         $products = [];
         $totalPrice = 0;
         foreach ($cartItems as $cartItem) {
@@ -63,7 +63,7 @@ class CartController extends Controller
     {
         $product = Product::findOrFail($product_id);
         $cart = new Cart;
-        $cart->user_id = 1;
+        $cart->user_id = Auth::user()->id;
         $cart->product_id = $product->id;
         $cart->save();
     }
