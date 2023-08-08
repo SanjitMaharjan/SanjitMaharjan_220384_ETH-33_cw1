@@ -36,5 +36,9 @@ Route::post("/cart/order/{cart_id}", [CartController::class, 'orderItems']); // 
 Route::post("/cart/deliver/{cart_id}", [CartController::class, 'deliverItems']); // auth, admin
 
 
-Route::get("/admin/dashboard", [ProductController::class, 'dashboard']);
-Route::get("/admin/products", [ProductController::class, 'adminProducts']);
+Route::get("/admin/dashboard", [ProductController::class, 'dashboard']); // admin
+Route::get("/admin/products", [ProductController::class, 'adminProducts']); // admin
+Route::get("/admin/products/{id}/edit", [ProductController::class, 'edit']); // admin
+Route::post("/admin/products/{id}/update", [ProductController::class, 'update']);  // admin
+Route::post("/admin/products/add", [ProductController::class, 'create']); // admin
+Route::post("/admin/products/{id}/delete", [ProductController::class, 'delete']); // admin

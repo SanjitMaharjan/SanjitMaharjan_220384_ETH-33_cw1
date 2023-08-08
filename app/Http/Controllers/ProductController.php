@@ -39,11 +39,11 @@ class ProductController extends Controller
     {
         if ($request->get('search')) {
             $keyword = $request->get('search');
-            $products = Product::where('name', 'like', $keyword . '%')->get();
+            $products = Product::where('name', 'like', $keyword . '%')->order_by('created_at', 'desc')->get();
         } else {
             $products = Product::all();
         }
-        return view('index', compact($products));
+        return view('admin_product', compact($products));
     }
 
     public function getProduct(int $id)
@@ -51,12 +51,7 @@ class ProductController extends Controller
         return Product::find($id);
     }
 
-    public function addPage()
-    {
-        return view('admin_add');
-    }
-
-    public function createProduct()
+    public function create()
     {
         $attributes = request()->validate([
             'title' => "required|max:255|unique:products,title",
@@ -65,31 +60,31 @@ class ProductController extends Controller
         ]);
         Product::create($attributes);
         session()->flash('info', "Product added successfully");
-        return view("admin_add");
+        return view("admin_product");
     }
 
     public function edit(int $id)
     {
         $product = Product::findOrFail($id);
-        return view('edit_product_page', compact($product));
+        return view('admin_edit_product', compact($product));
     }
 
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        if ($product) {
-            $product->title = $request->title;
-            $product->description = $request->description;
-            $product->price = $request->price;
-            $product->save();
-        } else {
-            return view('error page');
-        }
+        $product = Product::findOrFail($id);
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->save();
+        session()->flash('info', "Product updated successfully");
+        return view("admin_product");
     }
 
     public function delete($id)
     {
         $product = product::find($id);
         $product->delete();
+        session()->flash('info', "Product updated successfully");
+        return view("admin_product");
     }
 }
