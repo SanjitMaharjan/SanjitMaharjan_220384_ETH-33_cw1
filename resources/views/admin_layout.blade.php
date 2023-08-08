@@ -21,7 +21,7 @@
           <a class="nav-link" href="/admin/dashboard">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Ordered Items</a>
+          <a class="nav-link" href="/admin/products/ordered">Ordered Items</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Products</a>

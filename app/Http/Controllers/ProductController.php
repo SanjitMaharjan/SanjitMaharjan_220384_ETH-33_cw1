@@ -15,12 +15,19 @@ class ProductController extends Controller
     {
         $productCount = Product::count();
         $noOfDeliveries = Cart::where('delivered', true)->count();
+        $deliveredItems = Cart::where('delivered', true)->get();
+        $price = 0;
+        foreach ($deliveredItems as $item) {
+            foreach ($item->products as $product) {
+                $price += $product->price;
+            }
+        }
         $noOfOrdersLeft = Cart::where('delivered', false)->count();
         return view('admin_dashboard', [
             "no_of_products" => $productCount,
             "no_of_deliveries" => $noOfDeliveries,
             "no_of_orders" => $noOfOrdersLeft,
-            "income" => "Rs. 1200"
+            "income" => "$ $price"
         ]);
     }
 

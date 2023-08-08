@@ -48,7 +48,7 @@ Route::post("/admin/products/add", [ProductController::class, 'create']); // adm
 Route::post("/admin/products/{id}/delete", [ProductController::class, 'delete']); // admin
 
 Route::get("/admin/products/ordered", [CartController::class, 'adminOrderedProductPage'])->name("adminProductOrderedPage");
-Route::post("/admin/products/deliver", [CartController::class, 'deliverProduct']);
+Route::post("/admin/products/{product_id}/deliver", [CartController::class, 'deliverProduct']);
 Route::post("/cart/deliver/{cart_id}", [CartController::class, 'deliverItems']); // auth, admin'
 
 //product 

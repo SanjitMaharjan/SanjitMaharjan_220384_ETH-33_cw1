@@ -15,16 +15,24 @@ class CartController extends Controller
         $products = [];
         foreach ($carts as $cart) {
             foreach ($cart->products as $product) {
-                array_push($products, [...$product, 'delivered' => $cart->delivered, 'user' => $product->user]);
+                array_push($products, [
+                    "id" => $product->id,
+                    "cart_id" => $cart->id,
+                    "name" => $product->name,
+                    "price" => $product->price,
+                    'delivered' => $cart->delivered,
+                    'user_name' => $cart->user->name,
+                    'user_number' => $cart->user->number,
+                ]);
             }
         }
-        dump($products);
-        return view('admin_product_ordered', compact($products));
+        // dd($products);
+        return view('admin_product_ordered', ['products' => $products]);
     }
 
-    public function deliverProduct(int $product_id)
+    public function deliverProduct(int $cart_id)
     {
-        $cart = Cart::where('product_id', $product_id)->first();
+        $cart = Cart::findOrFail($cart_id);
         if ($cart) {
             $cart->delivered = true;
             $cart->save();
