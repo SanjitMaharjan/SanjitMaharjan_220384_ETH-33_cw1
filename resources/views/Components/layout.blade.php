@@ -10,8 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <title>Hello, world!</title>
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
@@ -46,20 +45,20 @@
           </li>
           @if(auth()->check() && auth()->user())
           {
-            <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
           </li>
           }
           @endif
-          
-          @if(auth()->check() && auth()->user()->is_admin === TRUE)
+
+          @if(auth()->check() && auth()->user()->is_admin)
           {
-            <li class="nav-item">
-            <a class="nav-link" href="/admin/dashboard">Admin pannel</a>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/dashboard">Admin Panel</a>
           </li>
           }
           @endif
-          
+
         </ul>
 
         <form class="form-inline mt-2 mt-md-0" action="/" method="GET">
@@ -83,15 +82,15 @@
 
   <section class="container mt-3">
     @if($message = Session::get('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success" role="alert">
       {{ $message }}
     </div>
     @elseif($message = Session::get('info'))
-    <div class="alert alert-info">
+    <div role="alert" class="alert alert-info">
       {{ $message }}
     </div>
     @elseif($message = Session::get('danger'))
-    <div class="alert alert-danger">
+    <div role="alert" class="alert alert-danger">
       {{ $message }}
     </div>
     @endif

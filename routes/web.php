@@ -59,7 +59,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post("/admin/products/{id}/delete", [ProductController::class, 'delete']); // admin
 
     Route::get("/admin/products/ordered", [CartController::class, 'adminOrderedProductPage'])->name("adminProductOrderedPage");
-    Route::post("/admin/products/deliver", [CartController::class, 'deliverProduct']);
+    Route::post("/admin/products/{cart_id}/deliver", [CartController::class, 'deliverProduct']);
     Route::post("/cart/deliver/{cart_id}", [CartController::class, 'deliverItems']); // auth, admin'
 
 });

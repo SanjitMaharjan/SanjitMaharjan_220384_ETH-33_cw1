@@ -21,7 +21,7 @@ class AdminMiddleware
 
                 return $next($request);
             } else {
-                return redirect(route('/'))->with('danger', 'You are not authorized to this page');
+                return redirect("/")->with('danger', 'You are not authorized to this page');
             }
         } else {
             return redirect(route('login'))->with('danger', 'login to access this website');

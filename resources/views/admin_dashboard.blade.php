@@ -5,22 +5,22 @@
 <h1>Admin Dashboard</h1>
 <div class="row gx-5">
   <div class="col-sm-12 col-md-6 col-lg coll">
-    <div class="p-card card1">
+    <a href="/admin/products" style="text-decoration:none;color:white;" class="p-card card1">
       <span class="icon">
         <i class="fa-solid fa-boxes-stacked"></i>
       </span>
       <h1 class="number">{{ $no_of_products }}</h1>
       <p class="text-lg">Total Products</p>
-    </div>
+    </a>
   </div>
   <div class="col-sm-12 col-md-6 col-lg coll">
-    <div class="p-card card2">
+    <a href="/admin/products/ordered" style="text-decoration:none; color:white;" class="p-card card2">
       <span class="icon">
         <i class="fa-solid fa-box-open"></i>
       </span>
       <h1 class="number">{{ $no_of_orders }}</h1>
       <p class="text-lg">Orders Left</p>
-    </div>
+    </a>
   </div>
   <div class="col-sm-12 col-md-6 col-lg coll">
     <div class="p-card card3">

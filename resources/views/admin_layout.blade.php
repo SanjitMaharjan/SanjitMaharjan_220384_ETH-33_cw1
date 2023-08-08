@@ -11,7 +11,7 @@
 
 <body>
   <nav class="navbar sticky-top navbar-expand-lg  navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Admin Panel</a>
+    <a class="navbar-brand" href="/admin/dashboard">Admin Panel</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,16 +24,13 @@
           <a class="nav-link" href="/admin/products/ordered">Ordered Items</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Products</a>
+          <a class="nav-link" href="/admin/products">Products</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Add User</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Add User</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
+          <a class="nav-link" href="/">Return to Customer Portal</a>
         </li>
       </ul>
     </div>
