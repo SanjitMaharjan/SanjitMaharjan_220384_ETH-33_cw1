@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class WishlistController extends Controller
 {
 
-    public function getAllWishListItems()
+    public function wishlistPage()
     {
         $items = Wishlist::with('products')->where('user_id', Auth::user()->id)->get();
+        dump($items);
         return view('wishlist', compact($items));
     }
 
@@ -28,7 +29,7 @@ class WishlistController extends Controller
     public function removeFromWishList($product_id)
     {
         $product = Product::findOrFail($product_id);
-        $wishlist = Wishlist::where('product_id', $product_id)->first();
+        $wishlist = Wishlist::where('product_id', $product->id)->first();
         if ($wishlist) {
             $wishlist->delete();
         }

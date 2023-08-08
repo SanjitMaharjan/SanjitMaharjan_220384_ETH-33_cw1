@@ -9,11 +9,27 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-
-    public function getOrderedItems()
+    public function adminOrderedProductPage()
     {
-        $orderedItems = Cart::with('user')->where('ordered', true)->orderBy('delivered', 'asc')->get();
-        return view('ordered_page');
+        $carts = Cart::with('products')->get();
+        $products = [];
+        foreach ($carts as $cart) {
+            foreach ($cart->products as $product) {
+                array_push($products, [...$product, 'delivered' => $cart->delivered, 'user' => $product->user]);
+            }
+        }
+        dump($products);
+        return view('admin_product_ordered', compact($products));
+    }
+
+    public function deliverProduct(int $product_id)
+    {
+        $cart = Cart::where('product_id', $product_id)->first();
+        if ($cart) {
+            $cart->delivered = true;
+            $cart->save();
+            return redirect(route('adminProductOrderedPage'));
+        }
     }
 
     public function getCartItems()

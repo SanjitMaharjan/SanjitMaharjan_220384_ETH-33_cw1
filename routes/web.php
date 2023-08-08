@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,10 @@ Route::post("/cart/remove/{product_id}", [CartController::class, 'removeFromCart
 Route::post("/cart/order/{cart_id}", [CartController::class, 'orderItems']); // auth
 Route::post("/cart/deliver/{cart_id}", [CartController::class, 'deliverItems']); // auth, admin
 
+Route::get("/wishlist", [WishlistController::class, 'wishlistPage']);
+Route::post("/wishlist/add/{product_id}", [WishlistController::class, 'addToWishlist']);
+Route::post("/wishlist/remove/{product_id}", [WishlistController::class, 'removeFromWishList']);
+
 
 Route::get("/admin/dashboard", [ProductController::class, 'dashboard']); // admin
 Route::get("/admin/products", [ProductController::class, 'adminProductPage']); // admin
@@ -42,3 +47,6 @@ Route::get("/admin/products/{id}/edit", [ProductController::class, 'edit']); // 
 Route::post("/admin/products/{id}/update", [ProductController::class, 'update']);  // admin
 Route::post("/admin/products/add", [ProductController::class, 'create']); // admin
 Route::post("/admin/products/{id}/delete", [ProductController::class, 'delete']); // admin
+
+Route::get("/admin/products/ordered", [CartController::class, 'adminOrderedProductPage'])->route("adminProductOrderedPage");
+Route::post("/admin/products/deliver", [CartController::class, 'deliverProduct']);
