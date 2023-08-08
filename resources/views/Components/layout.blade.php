@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <title>Hello, world!</title>
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
@@ -51,10 +52,10 @@
           }
           @endif
 
-          @if(auth()->check() && auth()->user()->is_admin)
+          @if(auth()->check() && auth()->user()->is_admin === TRUE)
           {
           <li class="nav-item">
-            <a class="nav-link" href="/admin/dashboard">Admin Panel</a>
+            <a class="nav-link" href="/admin/dashboard">Admin pannel</a>
           </li>
           }
           @endif
@@ -82,7 +83,7 @@
 
   <section class="container mt-3">
     @if($message = Session::get('success'))
-    <div class="alert alert-success" role="alert">
+    <div role="alert" class="alert alert-success">
       {{ $message }}
     </div>
     @elseif($message = Session::get('info'))
