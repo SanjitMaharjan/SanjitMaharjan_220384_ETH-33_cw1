@@ -9,11 +9,11 @@ class Cart extends Model
 {
     use HasFactory;
 
-    protected $table = "carts";
+    protected $table = "cart";
 
     public function products()
     {
-        return $this->hasMany(Product::class, 'product_id', 'id');
+        return $this->hasMany(Product::class, 'id', 'product_id');
     }
 
     public function user()

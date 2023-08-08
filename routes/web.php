@@ -34,3 +34,7 @@ Route::post("/cart/add/{product_id}", [CartController::class, 'addToCart']); // 
 Route::post("/cart/remove/{product_id}", [CartController::class, 'removeFromCart']); // auth
 Route::post("/cart/order/{cart_id}", [CartController::class, 'orderItems']); // auth
 Route::post("/cart/deliver/{cart_id}", [CartController::class, 'deliverItems']); // auth, admin
+
+
+Route::get("/admin/dashboard", [ProductController::class, 'dashboard']);
+Route::get("/admin/products", [ProductController::class, 'adminProducts']);
