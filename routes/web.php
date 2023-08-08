@@ -37,7 +37,7 @@ Route::post("/cart/deliver/{cart_id}", [CartController::class, 'deliverItems']);
 
 
 Route::get("/admin/dashboard", [ProductController::class, 'dashboard']); // admin
-Route::get("/admin/products", [ProductController::class, 'adminProducts']); // admin
+Route::get("/admin/products", [ProductController::class, 'adminProductPage']); // admin
 Route::get("/admin/products/{id}/edit", [ProductController::class, 'edit']); // admin
 Route::post("/admin/products/{id}/update", [ProductController::class, 'update']);  // admin
 Route::post("/admin/products/add", [ProductController::class, 'create']); // admin

@@ -23,19 +23,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function adminProducts(Request $request)
-    {
-        $carts = Cart::with('products')->get();
-        $products = [];
-        foreach ($carts as $cart) {
-            foreach ($cart->products as $product) {
-                array_push($products, $product);
-            }
-        }
-        return view('admin_product');
-    }
-
-    public function getProducts(Request $request)
+    public function adminProductPage(Request $request)
     {
         if ($request->get('search')) {
             $keyword = $request->get('search');
