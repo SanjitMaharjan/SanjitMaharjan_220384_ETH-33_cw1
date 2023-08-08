@@ -55,17 +55,17 @@
             <a class="nav-link" href="#"><i class="fa-regular fa-user" style="font-size: 20px;"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fa-regular fa-heart" style="font-size: 20px;"></i></a>
+            <a class="nav-link" href="/wishlist"><i class="fa-regular fa-heart" style="font-size: 20px;"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i></a>
+            <a class="nav-link" href="/cart"><i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i></a>
           </li>
         </ul>
       </div>
     </nav>
   </header>
 
-  <section>
+  <section class="container mt-3">
     @if($message = Session::get('success'))
     <div class="alert alert-success">
       {{ $message }}
@@ -79,7 +79,6 @@
       {{ $message }}
     </div>
     @endif
-    @yield('content')
   </section>
 
 
@@ -114,6 +113,31 @@
         },
       });
       event.target.parentElement.innerHTML = `<button type="button" class="btn btn-sm btn-outline-secondary" onclick="addToCart(event, ${product_id})">Add to Cart</button`;
+    }
+
+    async function addToWishlist(event, product_id) {
+      event.target.parentElement.innerHTML = `<i class="fa-solid fa-heart" onclick="removeFromWishlist(event, ${product_id})"></i>`;
+      await fetch(`/wishlist/add/${product_id}`, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          'Content-Type': 'application/json',
+          "X-CSRF-Token": '{{ csrf_token() }}'
+        },
+      });
+    }
+
+    async function removeFromWishlist(event, product_id) {
+      event.target.parentElement.innerHTML = `<i class="fa-regular fa-heart" onclick="addToWishlist(event, ${product_id})"></i>`;
+      await fetch(`/wishlist/remove/${product_id}`, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          'Content-Type': 'application/json',
+          "X-CSRF-Token": '{{ csrf_token() }}'
+        },
+      });
+      document.getElementById(`wishlist-card-${product_id}`)?.remove();
     }
   </script>
 

@@ -14,10 +14,11 @@ class WishlistController extends Controller
 
     public function wishlistPage()
     {
-        $items = Wishlist::where('user_id', Auth::user()->id)->get();
+        $items = Wishlist::where('user_id', 1)->get();
         $products = [];
         foreach ($items as $item) {
-            $item->product->cartAdded = (bool)Cart::where("product_id", $item->product->id)->where("user_id", Auth::user()->id)->count();
+            $item->product->cartAdded = (bool)Cart::where("product_id", $item->product->id)->where("user_id", 1)->count();
+            $item->product->addedOnWishlist = (bool)Wishlist::where("product_id", $item->product->id)->where("user_id", 1)->count();
             array_push($products, $item->product);
         }
         $categories = Category::all();
@@ -30,7 +31,7 @@ class WishlistController extends Controller
         $product = Product::findOrFail($product_id);
         $wishlist = new Wishlist();
         $wishlist->product_id = $product->id;
-        $wishlist->user_id = Auth::user()->id;
+        $wishlist->user_id = 1;
         $wishlist->save();
     }
 

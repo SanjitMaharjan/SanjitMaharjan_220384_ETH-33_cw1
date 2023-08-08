@@ -26,16 +26,18 @@ Route::post("/login", [UserController::class, 'loginUser']);
 Route::post("/register", [UserController::class, 'registerUser']);
 Route::get('/register', [UserController::class, 'registerPage']);
 
+Route::get("/cart", [CartController::class, 'getCartItems']); // auth
+Route::post("/cart/remove/{product_id}", [CartController::class, 'removeFromCart']); // auth
+
+Route::get("/cart/checkout", [CartController::class, 'checkout']);
 Route::middleware(['auth'])->group(function () {
   // yeha // paxi lekheko middleware haru vitra rakhe ho.. // auth lekheko auth middleware vitra rakhe // admin middleware lekheko admin middleware vitra rakhen
-  Route::get("/carts/items", [CartController::class, 'getCartItems']); // auth
   Route::post("/cart/add/{product_id}", [CartController::class, 'addToCart']); // auth
-  Route::post("/cart/remove/{product_id}", [CartController::class, 'removeFromCart']); // auth
   Route::post("/cart/order/{cart_id}", [CartController::class, 'orderItems']); // auth
-  Route::get("/wishlist", [WishlistController::class, 'wishlistPage']);
-  Route::post("/wishlist/add/{product_id}", [WishlistController::class, 'addToWishlist']);
-  Route::post("/wishlist/remove/{product_id}", [WishlistController::class, 'removeFromWishList']);
 });
+Route::get("/wishlist", [WishlistController::class, 'wishlistPage']);
+Route::post("/wishlist/add/{product_id}", [WishlistController::class, 'addToWishlist']);
+Route::post("/wishlist/remove/{product_id}", [WishlistController::class, 'removeFromWishList']);
 
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {

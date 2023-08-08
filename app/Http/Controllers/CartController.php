@@ -40,12 +40,23 @@ class CartController extends Controller
         }
     }
 
+    public function checkout()
+    {
+        return redirect("/")->with("success", "Successfully checked out");
+    }
+
     public function getCartItems()
     {
-        $cartItems = Cart::with('products')->where('user_id', Auth::user()->id)->get();
-        dd($cartItems);
-        // totalPrice, cartItems
-        return view('cart_page');
+        $cartItems = Cart::where('user_id', 1)->get();
+        $products = [];
+        $totalPrice = 0;
+        foreach ($cartItems as $cartItem) {
+            foreach ($cartItem->products as $product) {
+                array_push($products, $product);
+                $totalPrice += $product->price;
+            }
+        }
+        return view('cart_page', compact('products', 'totalPrice'));
     }
 
     public function addToCart(int $product_id)
@@ -60,8 +71,8 @@ class CartController extends Controller
     public function removeFromCart(int $product_id)
     {
         $product = Cart::where('product_id', $product_id)->first();
-        dd($product);
         $product->delete();
+        return redirect(back());
     }
 
     public function orderItems(int $cart_id)
