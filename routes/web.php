@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +19,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", function () {
-    return view('index');
-});
 
 
 Route::get('/login', [UserController::class, 'loginPage']);
@@ -50,3 +49,10 @@ Route::post("/admin/products/{id}/delete", [ProductController::class, 'delete'])
 
 Route::get("/admin/products/ordered", [CartController::class, 'adminOrderedProductPage'])->route("adminProductOrderedPage");
 Route::post("/admin/products/deliver", [CartController::class, 'deliverProduct']);
+Route::post("/cart/deliver/{cart_id}", [CartController::class, 'deliverItems']); // auth, admin'
+
+//product 
+Route::get('/', [ProductController::class, 'getProducts']);
+
+//Categories
+Route::get('/categories/{category:title}', [CategoryController::class, 'getProductsByCategory']);

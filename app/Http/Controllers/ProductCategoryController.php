@@ -22,4 +22,12 @@ class ProductCategoryController extends Controller
         }
         return $products;
     }
+
+    public function store($category_id,$product_id)
+    {
+        ProductCategory::create([
+            'product_id'=>$product_id,
+            'category_id'=>$category_id
+        ]);
+    }
 }
