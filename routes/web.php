@@ -26,12 +26,21 @@ Route::post("/login", [UserController::class, 'loginUser']);
 Route::post("/register", [UserController::class, 'registerUser']);
 Route::get('/register', [UserController::class, 'registerPage']);
 
+Route::post("/cart/remove/{product_id}", [CartController::class, 'removeFromCart']); // auth
+
 Route::middleware(['auth'])->group(function () {
-  // yeha // paxi lekheko middleware haru vitra rakhe ho.. // auth lekheko auth middleware vitra rakhe // admin middleware lekheko admin middleware vitra rakhen
-  Route::get("/carts/items", [CartController::class, 'getCartItems']); // auth
-  Route::post("/cart/add/{product_id}", [CartController::class, 'addToCart']); // auth
-  Route::post("/cart/remove/{product_id}", [CartController::class, 'removeFromCart']); // auth
-  Route::post("/cart/order/{cart_id}", [CartController::class, 'orderItems']); // auth
+
+  //product 
+  Route::get('/', [ProductController::class, 'getProducts']);
+  Route::get('/product-details/{id}', [ProductController::class, 'productDetails']);
+
+  //Categories
+  Route::get('/categories/{category:title}', [CategoryController::class, 'getProductsByCategory']);
+
+  Route::get("/cart", [CartController::class, 'getCartItems']);
+  Route::get("/cart/checkout", [CartController::class, 'checkout']);
+  Route::post("/cart/add/{product_id}", [CartController::class, 'addToCart']);
+  Route::post("/cart/order/{cart_id}", [CartController::class, 'orderItems']);
   Route::get("/wishlist", [WishlistController::class, 'wishlistPage']);
   Route::post("/wishlist/add/{product_id}", [WishlistController::class, 'addToWishlist']);
   Route::post("/wishlist/remove/{product_id}", [WishlistController::class, 'removeFromWishList']);
@@ -54,10 +63,3 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
   Route::post("/cart/deliver/{cart_id}", [CartController::class, 'deliverItems']); // auth, admin'
 
 });
-
-//product 
-Route::get('/', [ProductController::class, 'getProducts']);
-Route::get('/product-details/{id}', [ProductController::class, 'productDetails']);
-
-//Categories
-Route::get('/categories/{category:title}', [CategoryController::class, 'getProductsByCategory']);
