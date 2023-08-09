@@ -22,7 +22,7 @@ class CartController extends Controller
                     "price" => $product->price,
                     'delivered' => $cart->delivered,
                     'user_name' => $cart->user->name,
-                    'user_number' => $cart->user->number,
+                    'user_number' => $cart->user->phone_number,
                 ]);
             }
         }
@@ -42,12 +42,20 @@ class CartController extends Controller
 
     public function checkout()
     {
+        $carts = Cart::where("user_id", Auth::user()->id)->get();
+        foreach ($carts as $cart) {
+            $cart->ordered = true;
+            $cart->save();
+        }
         return redirect("/")->with("success", "Successfully checked out");
     }
 
     public function getCartItems()
     {
-        $cartItems = Cart::where('user_id', Auth::user()->id)->get();
+        $cartItems = Cart::where('user_id', Auth::user()->id)->where('ordered', false)->get();
+        if (!count($cartItems)) {
+            return redirect("/")->with("info", "Cart don't have any item");
+        }
         $products = [];
         $totalPrice = 0;
         foreach ($cartItems as $cartItem) {
@@ -72,7 +80,7 @@ class CartController extends Controller
     {
         $product = Cart::where('product_id', $product_id)->first();
         $product->delete();
-        return redirect(back());
+        return redirect()->back();
     }
 
     public function orderItems(int $cart_id)

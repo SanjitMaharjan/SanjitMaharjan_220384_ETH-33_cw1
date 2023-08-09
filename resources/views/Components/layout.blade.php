@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-  <title>Hello, world!</title>
+  <title>Hamro Bazaar</title>
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
@@ -44,22 +44,15 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Help</a>
           </li>
-          @if(auth()->check() && auth()->user())
+
+          @if(auth()->check() && auth()->user()->is_admin)
           {
-            <li class="nav-item">
-            <a class="nav-link" href="/logout">Logout</a>
-          </li>
-          }
-          @endif
-          
-          @if(auth()->check() && auth()->user()->is_admin === TRUE)
-          {
-            <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="/admin/dashboard">Admin pannel</a>
           </li>
           }
           @endif
-          
+
         </ul>
 
         <form class="form-inline mt-2 mt-md-0" action="/" method="GET">
@@ -67,15 +60,25 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="navbar-nav mr-right">
+
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fa-regular fa-user" style="font-size: 20px;"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/wishlist"><i class="fa-regular fa-heart" style="font-size: 20px;"></i></a>
+            <a class="nav-link" href="/wishlist" title="Wishlist">
+              <i class="fa-regular fa-heart" style="font-size: 20px;"></i>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/cart"><i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i></a>
+            <a class="nav-link" href="/cart" title="Cart">
+              <i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i>
+            </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout" title="Logout">
+              <i class="fa-solid fa-right-from-bracket" style="font-size: 20px;"></i>
+            </a>
+          </li>
+
         </ul>
       </div>
     </nav>
@@ -83,16 +86,25 @@
 
   <section class="container mt-3">
     @if($message = Session::get('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
       {{ $message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
     @elseif($message = Session::get('info'))
-    <div class="alert alert-info">
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
       {{ $message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
     @elseif($message = Session::get('danger'))
-    <div class="alert alert-danger">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
       {{ $message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
     @endif
   </section>

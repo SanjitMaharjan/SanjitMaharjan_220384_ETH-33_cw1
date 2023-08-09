@@ -49,7 +49,7 @@ class CategoryController extends Controller
 
         $products = [];
         foreach ($category->products as $product) {
-            $product->cartAdded = (bool)Cart::where("product_id", $product->id)->where("user_id", Auth::user()->id)->count();
+            $product->cartAdded = (bool)Cart::where("product_id", $product->id)->where("user_id", Auth::user()->id)->where('ordered', false)->count();
             $product->addedOnWishlist = (bool)Wishlist::where("product_id", $product->id)->where("user_id", Auth::user()->id)->count();
             array_push($products, $product);
         }

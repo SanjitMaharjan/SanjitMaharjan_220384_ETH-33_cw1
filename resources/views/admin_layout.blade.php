@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Document</title>
+  <title>Admin Panel - Hamro Bazaar</title>
 </head>
 
 <body>
   <nav class="navbar sticky-top navbar-expand-lg  navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Admin Panel</a>
+    <a class="navbar-brand" href="/admin/dashboard">Admin Panel</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,33 +24,39 @@
           <a class="nav-link" href="/admin/products/ordered">Ordered Items</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Products</a>
+          <a class="nav-link" href="/admin/products">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Add User</a>
+          <a class="nav-link" href="/admin/users">Admin Users</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Add User</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
+          <a class="nav-link" href="/">Return to Customer Portal</a>
         </li>
       </ul>
     </div>
   </nav>
   <main class="container">
-    <section>
+    <section class="container mt-3">
       @if($message = Session::get('success'))
-      <div class="alert alert-success">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ $message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       @elseif($message = Session::get('info'))
-      <div class="alert alert-info">
+      <div class="alert alert-info alert-dismissible fade show" role="alert">
         {{ $message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       @elseif($message = Session::get('danger'))
-      <div class="alert alert-danger">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{ $message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       @endif
     </section>
