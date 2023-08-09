@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get("/logout", [UserController::class, 'logout']);
     //product 
-    Route::get('/', [ProductController::class, 'getProducts']);
+    Route::get('/dashboard', [ProductController::class, 'getProducts']);
     Route::get('/product-details/{id}', [ProductController::class, 'productDetails']);
 
     //Categories
@@ -46,6 +47,22 @@ Route::middleware(['auth'])->group(function () {
     Route::post("/wishlist/remove/{product_id}", [WishlistController::class, 'removeFromWishList']);
 });
 
+Route::get("/", function () {
+    if (Auth::check()) {
+        return redirect("/dashboard");
+    }
+    return view("not_login_dashboard");
+});
+
+Route::get("/about", function () {
+    $categories = Category::all();
+    return view("about", compact('categories'));
+});
+
+Route::get("/help", function () {
+    $categories = Category::all();
+    return view("helpus", compact('categories'));
+});
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get("/ordered", [CartController::class, 'getOrderedItems']); // auth, admin
