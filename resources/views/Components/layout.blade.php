@@ -44,15 +44,8 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Help</a>
           </li>
-          @if(auth()->check() && auth()->user())
-          {
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">Logout</a>
-          </li>
-          }
-          @endif
 
-          @if(auth()->check() && auth()->user()->is_admin === TRUE)
+          @if(auth()->check() && auth()->user()->is_admin)
           {
           <li class="nav-item">
             <a class="nav-link" href="/admin/dashboard">Admin pannel</a>
@@ -67,15 +60,25 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <ul class="navbar-nav mr-right">
+
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fa-regular fa-user" style="font-size: 20px;"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/wishlist"><i class="fa-regular fa-heart" style="font-size: 20px;"></i></a>
+            <a class="nav-link" href="/wishlist" title="Wishlist">
+              <i class="fa-regular fa-heart" style="font-size: 20px;"></i>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/cart"><i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i></a>
+            <a class="nav-link" href="/cart" title="Cart">
+              <i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i>
+            </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout" title="Logout">
+              <i class="fa-solid fa-right-from-bracket" style="font-size: 20px;"></i>
+            </a>
+          </li>
+
         </ul>
       </div>
     </nav>
@@ -83,16 +86,25 @@
 
   <section class="container mt-3">
     @if($message = Session::get('success'))
-    <div role="alert" class="alert alert-success">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
       {{ $message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
     @elseif($message = Session::get('info'))
-    <div role="alert" class="alert alert-info">
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
       {{ $message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
     @elseif($message = Session::get('danger'))
-    <div role="alert" class="alert alert-danger">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
       {{ $message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
     @endif
   </section>

@@ -53,6 +53,9 @@ class CartController extends Controller
     public function getCartItems()
     {
         $cartItems = Cart::where('user_id', Auth::user()->id)->where('ordered', false)->get();
+        if (!count($cartItems)) {
+            return redirect("/")->with("info", "Cart don't have any item");
+        }
         $products = [];
         $totalPrice = 0;
         foreach ($cartItems as $cartItem) {
@@ -77,7 +80,7 @@ class CartController extends Controller
     {
         $product = Cart::where('product_id', $product_id)->first();
         $product->delete();
-        return redirect(back());
+        return redirect()->back();
     }
 
     public function orderItems(int $cart_id)
