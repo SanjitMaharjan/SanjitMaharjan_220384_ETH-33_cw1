@@ -12,7 +12,7 @@
       @foreach($carouselProducts as $product)
       <div class="carousel-item {{ $i==0 ? 'active': '' }}">
         <div class="d-flex justify-content-center ">
-          <img class="d-block w-100" src="{{ $product->image }}" alt="First slide">
+          <img class="d-block w-100" src="{{ asset('images/'.$product->image) }}" alt="First slide">
         </div>
         <div class="carousel-caption d-none d-md-block">
           <h5 class="display-2">{{ $product->name }}</h5>

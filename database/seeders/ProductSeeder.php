@@ -22,7 +22,7 @@ class ProductSeeder extends Seeder
                 "name" => "Tshirt",
                 "description" => "This is tshirt",
                 "price" => 1000,
-                "image" => $faker->imageUrl(640, 480, 'cats'),
+                "image" => 'test-pant.webp',
             ],
             [
                 "id" => 20230002,
@@ -30,7 +30,7 @@ class ProductSeeder extends Seeder
                 "name" => "Tshirt",
                 "description" => "This is tshirt",
                 "price" => 1000,
-                "image" => $faker->imageUrl(640, 480, 'cats'),
+                "image" => 'test-pant.webp',
             ],
             [
                 "id" => 20230003,
@@ -38,7 +38,7 @@ class ProductSeeder extends Seeder
                 "name" => "Tshirt",
                 "description" => "This is tshirt",
                 "price" => 1000,
-                "image" => $faker->imageUrl(640, 480, 'cats'),
+                "image" => 'test-pant.webp',
             ]
         ];
         foreach ($products as $product) {

@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 
 class ProductController extends Controller
 {
@@ -68,21 +69,22 @@ class ProductController extends Controller
 
     public function adminProductPage()
     {
-        return view('admin_product');
-    }
-
-    public function addPage()
-    {
-        return view("admin_add_product");
+        $products = Product::all();
+        $categories = Category::all();
+        return view('admin_product', compact("products", "categories"));
     }
 
     public function create()
     {
         $attributes = request()->validate([
-            'title' => "required|max:255|unique:products,title",
+            'name' => "required|max:255|unique:products,name",
             'description' => "required|min:3",
-            'price' => "required"
+            'price' => "required",
+            "category_id" => "required"
         ]);
+        $imageName = time() . '.' . request()->image->extension();
+        request()->file('image')->move(public_path("images"), $imageName);
+        $attributes['image'] = $imageName;
         Product::create($attributes);
         session()->flash('info', "Product added successfully");
         return redirect("/admin/products");
@@ -91,26 +93,28 @@ class ProductController extends Controller
     public function edit(int $id)
     {
         $product = Product::findOrFail($id);
-        return view('admin_edit_product', compact($product));
+        $categories = Category::all();
+        return view('admin_edit_product', compact('product', 'categories'));
     }
 
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        $product->title = $request->title;
+        $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->save();
-        session()->flash('info', "Product updated successfully");
-        return view("admin_product");
+        session()->flash('success', "Product updated successfully");
+        return redirect("/admin/products");
     }
 
     public function delete($id)
     {
+
         $product = product::find($id);
         $product->delete();
-        session()->flash('info', "Product updated successfully");
-        return view("admin_product");
+        session()->flash('danger', "Product deleted successfully");
+        return redirect("/admin/products");
     }
 
 
