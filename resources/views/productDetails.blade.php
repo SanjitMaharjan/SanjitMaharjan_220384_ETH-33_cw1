@@ -1,5 +1,5 @@
 @include('components.layout')
-  
+<link rel="stylesheet" href="{{ asset('css/productDetail.css') }}"> 
 <div class="container-fluid">
         <div class="container">
             <!-- <div class="col-md-10"> -->

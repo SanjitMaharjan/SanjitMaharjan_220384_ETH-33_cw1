@@ -1,0 +1,37 @@
+.main-image{
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+}
+
+.tags{
+    position: relative;
+    float: right;
+}
+
+.card .card_slider{
+    height: 100px;
+    width: 100px;
+}
+
+.card-img-top{
+    height: 100px;
+}
+
+.card .card_slider{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+    .main-image {
+        height: 200px;
+        width: 200px;
+        padding: 0px;
+    }
+  }
+  @media (max-width: 850px) {
+    .image {
+      width: 100%;
+      height: 100%;
+    }
+  }

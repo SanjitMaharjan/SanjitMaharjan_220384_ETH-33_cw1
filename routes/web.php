@@ -55,6 +55,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get("/admin/products", [ProductController::class, 'adminProductPage']); // admin
     Route::get("/admin/products/{id}/edit", [ProductController::class, 'edit']); // admin
     Route::post("/admin/products/{id}/update", [ProductController::class, 'update']);  // admin
+    Route::get("/admin/prdoucts/add", [ProductController::class, 'addPage'];)
     Route::post("/admin/products/add", [ProductController::class, 'create']); // admin
     Route::post("/admin/products/{id}/delete", [ProductController::class, 'delete']); // admin
 

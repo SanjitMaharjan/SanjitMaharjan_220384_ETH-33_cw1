@@ -2,6 +2,6 @@
 
 @section('content')
 
-// here, add and table
+
 
 @endsection

@@ -32,6 +32,7 @@ class ProductController extends Controller
         ]);
     }
 
+
     public function getProducts(Request $request)
     {
         $productFromQuery = [];
@@ -53,9 +54,20 @@ class ProductController extends Controller
         return view('product', compact('products', 'categories'));
     }
 
+
     public function getProduct(int $id)
     {
         return Product::find($id);
+    }
+
+    public function adminProductPage()
+    {
+        return view('admin_product');
+    }
+
+    public function addPage()
+    {
+        return view("admin_add_product");
     }
 
     public function create()
@@ -67,7 +79,7 @@ class ProductController extends Controller
         ]);
         Product::create($attributes);
         session()->flash('info', "Product added successfully");
-        return view("admin_product");
+        return redirect("/admin/products");
     }
 
     public function edit(int $id)
@@ -94,6 +106,8 @@ class ProductController extends Controller
         session()->flash('info', "Product updated successfully");
         return view("admin_product");
     }
+
+
 
     public function productDetails($id)
     {
