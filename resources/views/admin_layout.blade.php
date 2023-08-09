@@ -27,7 +27,7 @@
           <a class="nav-link" href="/admin/products">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href=".admin/users">Admin Users</a>
+          <a class="nav-link" href="/admin/users">Admin Users</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/">Return to Customer Portal</a>

@@ -35,12 +35,18 @@ class ProductController extends Controller
     public function getProducts(Request $request)
     {
         $productFromQuery = [];
+        $carouselProducts = [];
+        $searching = false;
         if (request('search')) {
+            $searching = true;
             $keyword = request('search');
             $productFromQuery = Product::where('name', 'like', $keyword . '%')->get();
         } else {
             $productFromQuery = Product::all();
+            $carouselProducts = Product::orderBy('created_at', 'desc')->get()->take(5);
         }
+
+
         $products = [];
         foreach ($productFromQuery as $product) {
             $product->cartAdded = (bool)Cart::where("product_id", $product->id)->where("user_id", Auth::user()->id)->where('ordered', false)->count();
@@ -50,7 +56,7 @@ class ProductController extends Controller
         $categories = Category::all();
 
 
-        return view('product', compact('products', 'categories'));
+        return view('dashboard', compact('searching', 'carouselProducts', 'products', 'categories'));
     }
 
     public function getProduct(int $id)
