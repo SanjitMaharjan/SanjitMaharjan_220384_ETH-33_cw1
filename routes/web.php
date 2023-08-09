@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -51,7 +52,8 @@ Route::get("/", function () {
     if (Auth::check()) {
         return redirect("/dashboard");
     }
-    return view("not_login_dashboard");
+    $products = Product::all();
+    return view("not_login_dashboard", compact('products'));
 });
 
 Route::get("/about", function () {
