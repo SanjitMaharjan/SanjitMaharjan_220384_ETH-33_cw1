@@ -16,11 +16,23 @@ class CategorySeeder extends Seeder
         $categories = [
             [
                 "id" => 1,
-                "title" => "Title1",
+                "title" => "Shirt",
             ],
             [
                 "id" => 2,
-                "title" => "Title2",
+                "title" => "T-Shirt",
+            ],
+            [
+                "id" => 3,
+                "title" => "Hoodie",
+            ],
+            [
+                "id" => 4,
+                "title" => "Jacket",
+            ],
+            [
+                "id" => 5,
+                "title" => "Sweater",
             ],
         ];
         foreach ($categories as $category) {

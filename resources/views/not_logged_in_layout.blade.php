@@ -1,18 +1,3 @@
- <!-- <html>
-<title></title>
-
-<body>
-    <h1>NOt logged in</h1>
-    @foreach($products as $product)
-    {{ $product->name }}
-    {{ $product->description }}
-    {{ $product->price }}
-    <img src="{{ asset('images/'.$product->image) }}" style="width: 100px">
-    @endforeach
-</body> 
-
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,9 +82,9 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="/">TEN11</a>
+            <a class="navbar-brand" href="/">TEN 11</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -113,27 +98,7 @@
             </div>
         </div>
     </nav>
-    <div>
-    <header class="bg-dark text-white text-center py-5">
-        <div class="container">
-            <h1>Welcome to TEN11 Clothing</h1>
-        </div>
-    </header>
-    <div class="container my-5 text-center zoom-effect">
-        <img src="{{ asset('images/test-logo.png') }}" alt="TEN11 Logo" class="img-fluid">
-    </div>
-    <div class="container my-5">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-        @foreach($products as $product)
-            <div class="col">
-                <div class="zoom-effect">
-                    <img src="{{ asset('images/'.$product->image) }}" alt="Image 1" class="img-fluid">
-                </div>
-            </div>
-        @endforeach
-            
-        </div>
-    </div>
+    @yield('content')
     <section id="contact" class="contact text-center">
         <div class="container">
             <div class="section-title">

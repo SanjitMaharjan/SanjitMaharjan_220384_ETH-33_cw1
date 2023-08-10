@@ -39,8 +39,8 @@
                 </div>
               </form>
 
-              <div>
-                <p class="mb-0">Don't have an account ?? <a href="/register" class="text-white-50 fw-bold">Login</a>
+              <div>2
+                <p class="mb-0">Don't have an account ?? <a href="/register" class="text-white-50 fw-bold">Register</a>
                 </p>
               </div>
             </div>

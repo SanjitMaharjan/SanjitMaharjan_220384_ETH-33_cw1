@@ -16,3 +16,52 @@ body{
     top: 8px; right: 16px;
     color: green;
 }
+
+@media screen and (max-width: 280px) {
+    .card-img-top{
+        height: 200px;
+    }
+  }
+
+
+
+  .footer {
+    background-color: #222;
+    font-family: Arial, sans-serif;
+    color: white;
+    padding-top: 20px;
+    margin-top: 10px;
+}
+.contacts li, .pages li {
+    list-style: none;
+}
+.contacts li:hover, .pages li:hover {
+    color: grey;
+}
+.contacts a, .pages a {
+    text-decoration: none;
+    color: white;
+}
+.footer-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.social-links a {
+    color: white;
+    font-size: 30px;
+}
+.social-links a:hover {
+    color: grey;
+}
+.footer-img {
+    height: 150px;
+    width: 350px;
+    object-fit: contain;
+}
+@media (max-width: 350px) {
+  .footer-img{
+    height: 100px;
+    width: 200px;
+  }
+}

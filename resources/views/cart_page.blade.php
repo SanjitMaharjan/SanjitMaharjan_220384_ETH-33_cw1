@@ -47,7 +47,7 @@
                   @foreach($products as $product)
                   <div class="row mb-4 d-flex justify-content-between align-items-center">
                     <div class="col-md-2 col-lg-2 col-xl-2">
-                      <img src="{{ {{ asset('images/'.$product->image) }} }}" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                      <img src="{{ asset('images/'.$product->image) }}" class="img-fluid rounded-3" alt="Cotton T-shirt">
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-3">
                       <h4 class="text-black mb-0">{{ $product->name }}</h4>
@@ -71,7 +71,7 @@
                   <hr class="my-4">
 
                   <div class="pt-5">
-                    <h6 class="mb-0"><a href="#!" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                    <h6 class="mb-0"><a href="/dashboard" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
                   </div>
                 </div>
               </div>

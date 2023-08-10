@@ -19,7 +19,7 @@ class CartSeeder extends Seeder
         $cartItems = [];
         for ($i = 0; $i < $orderedItemNumber; $i++) {
             array_push($cartItems, [
-                "product_id" => $faker->unique(true)->numberBetween(20230001, 20230003),
+                "product_id" => $faker->unique(true)->numberBetween(20230001, 20230011),
                 "user_id" => $faker->unique(true)->numberBetween(2, 4),
                 "delivered" => $faker->boolean(),
                 "ordered" => true,

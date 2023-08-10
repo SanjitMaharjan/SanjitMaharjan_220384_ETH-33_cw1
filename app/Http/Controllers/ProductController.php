@@ -39,15 +39,15 @@ class ProductController extends Controller
         $productFromQuery = [];
         $carouselProducts = [];
         $searching = false;
-        if (request('search')) {
+        // dd($request->all());
+        if (request()->get('search')) {
             $searching = true;
-            $keyword = request('search');
-            $productFromQuery = Product::where('name', 'like', $keyword . '%')->get();
+            $keyword = request()->get('search');
+            $productFromQuery = Product::where('name', 'like', '%'. $keyword . '%')->get();
         } else {
             $productFromQuery = Product::all();
             $carouselProducts = Product::orderBy('created_at', 'desc')->get()->take(5);
         }
-
 
         $products = [];
         foreach ($productFromQuery as $product) {

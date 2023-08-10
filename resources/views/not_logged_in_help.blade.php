@@ -1,4 +1,4 @@
-@extends("Components.layout")
+@extends("not_logged_in_layout")
 
 @section("content")
 

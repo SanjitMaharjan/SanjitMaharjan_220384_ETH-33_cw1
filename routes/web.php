@@ -57,13 +57,19 @@ Route::get("/", function () {
 });
 
 Route::get("/about", function () {
-    $categories = Category::all();
-    return view("about", compact('categories'));
+    if(Auth::check()) {
+        $categories = Category::all();
+        return view("about", compact('categories'));
+    }
+    return view("not_logged_in_about");
 });
 
 Route::get("/help", function () {
-    $categories = Category::all();
-    return view("helpus", compact('categories'));
+    if(Auth::check()) {
+        $categories = Category::all();
+        return view("helpus", compact('categories'));
+    }
+    return view("not_logged_in_help");
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {

@@ -5,7 +5,7 @@
   <i class="fa-regular fa-heart" onclick="addToWishlist(event, {{ $product->id }})"></i>
   @endif
 </div>
-<a href="#"><img class="card-img-top" src="{{ asset('images/'.$product->image) }}" alt="Card image"></a>
+<a href=""><img class="card-img-top" src="{{ asset('images/'.$product->image) }} " alt="Card image"></a>
 <div class="card-body">
   <h5 class="card-title">{{$product->name}}</h5>
   <strong class=" text-danger">Rs. {{$product->price}}</strong>
