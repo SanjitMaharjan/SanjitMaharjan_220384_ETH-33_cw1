@@ -27,15 +27,15 @@ class UserSeeder extends Seeder
                 "is_admin" => true,
             ],
         ];
-        for ($i = 0; $i < $numberOfCustomers; $i++) {
-            array_push($users, [
-                'name' => $faker->name,
-                'email' =>  $faker->unique()->safeEmail,
-                'phone_number' => $faker->numberBetween(9800000000, 9899999999),
-                "password" => Str::random(10),
-                "is_admin" => false,
-            ]);
-        }
+        // for ($i = 0; $i < $numberOfCustomers; $i++) {
+        //     array_push($users, [
+        //         'name' => $faker->name,
+        //         'email' =>  $faker->unique()->safeEmail,
+        //         'phone_number' => $faker->numberBetween(9800000000, 9899999999),
+        //         "password" => Str::random(10),
+        //         "is_admin" => false,
+        //     ]);
+        // }
         foreach ($users as $user) {
             User::create([
                 "name" => $user['name'],

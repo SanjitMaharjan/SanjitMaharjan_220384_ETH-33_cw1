@@ -64,6 +64,7 @@ Route::get("/about", function () {
     return view("not_logged_in_about");
 });
 
+
 Route::get("/help", function () {
     if(Auth::check()) {
         $categories = Category::all();
@@ -76,6 +77,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get("/ordered", [CartController::class, 'getOrderedItems']); // auth, admin
     Route::post("/cart/deliver/{cart_id}", [CartController::class, 'deliverItems']); // auth, admin
 
+    Route::get("/admin/customers", [UserController::class, 'customerPage']);;
     Route::get("/admin/dashboard", [ProductController::class, 'dashboard']); // admin
     Route::get("/admin/products", [ProductController::class, 'adminProductPage']); // admin
     Route::get("/admin/products/{id}/edit", [ProductController::class, 'edit']); // admin

@@ -58,7 +58,7 @@
             </div>
             <div class="mb-3">
                 <label for="image1" class="form-label">Product Image</label>
-                <input type="file" class="form-control" name="image" multiple>
+                <input type="file" class="form-control" name="image">
             </div>
             <button type="submit" class="btn btn-primary btn-block" style="background-color: black; border-color: black;">
                 Upload
@@ -72,6 +72,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Product ID</th>
+                    <th scope="col">Product Image</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Action</th>
@@ -80,6 +81,7 @@
             @foreach($products as $product)
             <tr>
                 <th scope="row">{{$product->id}}</th>
+                <td><img src="{{ asset('images/'.$product->image) }}" alt="" style="width: 100px;"></td>
                 <td>{{$product->name}}</td>
                 <td>Rs.<span>{{$product->price}}</span></td>
                 <td>

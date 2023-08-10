@@ -20,6 +20,7 @@ class CartController extends Controller
                     "cart_id" => $cart->id,
                     "name" => $product->name,
                     "price" => $product->price,
+                    "image" => $product->image,
                     'delivered' => $cart->delivered,
                     'user_name' => $cart->user->name,
                     'user_number' => $cart->user->phone_number,

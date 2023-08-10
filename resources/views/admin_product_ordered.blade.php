@@ -8,6 +8,7 @@
     <thead class="thead-dark">
       <tr>
         <th scope="col">Product ID</th>
+        <th scope="col">Product Image</th>
         <th scope="col">Product Name</th>
         <th scope="col">Price</th>
         <th scope="col">Name</th>
@@ -19,8 +20,9 @@
       @foreach($products as $product)
       <tr>
         <td>{{ $product['id'] }} </td>
+        <td><img src="{{ asset('images/'.$product['image']) }}" alt="" style="width: 100px;"></td>
         <td>{{ $product['name'] }}</td>
-        <td>${{ $product['price'] }}</td>
+        <td>Rs. {{ $product['price'] }}</td>
         <td>{{ $product['user_name'] }}</td>
         <td>{{ $product['user_number'] }}</td>
         <td>

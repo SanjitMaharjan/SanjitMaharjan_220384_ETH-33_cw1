@@ -30,6 +30,9 @@
           <a class="nav-link" href="/admin/users">Admin Users</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/admin/customers">Customers</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/">Return to Customer Portal</a>
         </li>
       </ul>

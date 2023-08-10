@@ -25,7 +25,7 @@ class UserController extends Controller
     {
         $attributes = request()->validate([
             'name' => "required|max:255",
-            'phone_number' => "required|min:10|max:10",
+            'phone_number' => ["required", "min:10", "max:10", Rule::unique('users', 'phone_number')],
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')],
             'password' => 'required|min:7|max:255',
             'password_confirmation' => 'required|same:password',
@@ -37,6 +37,11 @@ class UserController extends Controller
         auth()->login($user);
         session()->flash('success', 'Your accounted has been created');
         return redirect('/');
+    }
+
+    public function customerPage() {
+        $customers = User::where("is_admin", false)->get();
+        return view("admin_customers", compact('customers'));
     }
 
 
@@ -76,7 +81,7 @@ class UserController extends Controller
     {
         $attributes = request()->validate([
             'name' => "required|max:255",
-            'phone_number' => "required|min:10|max:10",
+            'phone_number' => ["required", "min:10", "max:10", Rule::unique('users', 'phone_number')],
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')],
             'password' => 'required|min:7|max:255',
         ]);

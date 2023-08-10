@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class ProductController extends Controller
         $productCount = Product::count();
         $noOfDeliveries = Cart::where('delivered', true)->count();
         $deliveredItems = Cart::where('delivered', true)->get();
+        $customerCount = User::where("is_admin", false)->count();
         $price = 0;
         foreach ($deliveredItems as $item) {
             foreach ($item->products as $product) {
@@ -29,7 +31,8 @@ class ProductController extends Controller
             "no_of_products" => $productCount,
             "no_of_deliveries" => $noOfDeliveries,
             "no_of_orders" => $noOfOrdersLeft,
-            "income" => "$ $price"
+            "income" => "Rs. $price",
+            "customerCount" => $customerCount
         ]);
     }
 

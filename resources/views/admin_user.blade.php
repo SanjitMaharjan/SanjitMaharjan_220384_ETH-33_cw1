@@ -5,7 +5,7 @@
 <form id="adminAddForm" method="POST" action="/admin/users/add">
   @csrf
   <div class="mb-md-5 mt-md-4 pb-5">
-    <h2 class="fw-bold mb-2 text-uppercase">Add User</h2>
+    <h2 class="fw-bold mb-2 ">Add Admin User</h2>
     <div class="form-outline form-white mb-4">
       <label class="form-label" for="typeUsername">Full Name</label>
       <input type="text" id="typeUsername" class="form-control form-control-lg" name="name" value="{{ old('name') }}" />

@@ -4,7 +4,7 @@
 
 <h1>Admin Dashboard</h1>
 <div class="row gx-5">
-  <div class="col-sm-12 col-md-6 col-lg coll">
+  <div class="col-sm-12 col-md-6 col-lg-4 coll">
     <a href="/admin/products" style="text-decoration:none;color:white;" class="p-card card1">
       <span class="icon">
         <i class="fa-solid fa-boxes-stacked"></i>
@@ -13,7 +13,7 @@
       <p class="text-lg">Total Products</p>
     </a>
   </div>
-  <div class="col-sm-12 col-md-6 col-lg coll">
+  <div class="col-sm-12 col-md-6 col-lg-4 coll">
     <a href="/admin/products/ordered" style="text-decoration:none; color:white;" class="p-card card2">
       <span class="icon">
         <i class="fa-solid fa-box-open"></i>
@@ -22,7 +22,7 @@
       <p class="text-lg">Orders Left</p>
     </a>
   </div>
-  <div class="col-sm-12 col-md-6 col-lg coll">
+  <div class="col-sm-12 col-md-6 col-lg-4 coll">
     <div class="p-card card3">
       <span class="icon">
         <i class="fa-solid fa-boxes-packing"></i>
@@ -31,7 +31,7 @@
       <p class="text-lg">Total Delivered</p>
     </div>
   </div>
-  <div class="col-sm-12 col-md-6 col-lg coll">
+  <div class="col-sm-12 col-md-6 col-lg-4 coll">
     <div class="p-card card4">
       <span class="icon">
         <i class="fa-solid fa-coins"></i>
@@ -39,6 +39,15 @@
       <h1 class="number">{{ $income }}</h1>
       <p class="text-lg">Total Income</p>
     </div>
+  </div>
+  <div class="col-sm-12 col-md-6 col-lg-4 coll">
+    <a href="/admin/customers" style="text-decoration:none; color:white;" class="p-card card5">
+      <span class="icon">
+        <i class="fa-solid fa-users"></i>
+      </span>
+      <h1 class="number">{{ $customerCount }}</h1>
+      <p class="text-lg">Total Customers</p>
+    </a>
   </div>
 </div>
 
@@ -79,6 +88,10 @@
 
   .card4 {
     background: linear-gradient(0deg, #31b7c2, #7bc393);
+  }
+
+  .card5 {
+    background: linear-gradient(90deg, #bc4e9c, #f80759);
   }
 
   .coll {
